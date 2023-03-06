@@ -15,10 +15,14 @@ class MainActivity : AppCompatActivity() {
 
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-    val student = getStudent()
+    // `binding.student` available after adding variable `student` inside <data></data> in activity_main.xml
+    // demonstration of passing data object directly into layout file
+    binding.student = getStudent()
 
-    binding.nameText.text = student.name
-    binding.emailText.text = student.email
+//    val student = getStudent()
+//
+//    binding.nameText.text = student.name
+//    binding.emailText.text = student.email
 
   }
 
