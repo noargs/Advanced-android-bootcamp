@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">Two Way DataBinding</string>
+  <string name="ibn">Ibn</string>
+  <string name="name_input">Please enter you name</string>
+</resources>
