@@ -1,4 +1,4 @@
-package github.noargs.viewmodelexercise
+package github.noargs.viewmodelfactory
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import github.noargs.viewmodelexercise.databinding.ActivityMainBinding
+import github.noargs.viewmodelfactory.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,27 +19,33 @@ class MainActivity : AppCompatActivity() {
 //    setContentView(R.layout.activity_main)
 
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-    viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+    viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
     binding.resultTextView.text = viewModel.getTotal().toString()
 
     binding.insertButton.setOnClickListener {
-      if (binding.inputEditText.text.toString() == "") {
-        Toast.makeText(this, "Please enter a number", Toast.LENGTH_LONG).show()
-      } else {
-        viewModel.setTotal(binding.inputEditText.text.toString().toInt())
-        binding.resultTextView.text = viewModel.getTotal().toString()
-        binding.inputEditText.text.clear()
+      binding.apply {
+        if (inputEditText.text.toString() == "") {
+          Toast.makeText(this@MainActivity,
+            getString(R.string.edit_text_empty_field_error),
+            Toast.LENGTH_LONG
+          ).show()
+        } else {
+          viewModel.setTotal(inputEditText.text.toString().toInt())
+          resultTextView.text = viewModel.getTotal().toString()
+          inputEditText.text.clear()
+        }
+
+        hideKeyboard()
       }
-      hideKeyboard()
     }
+
   }
 
   private fun hideKeyboard() {
     if (currentFocus != null) {
       val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-
     }
   }
 }
