@@ -1,0 +1,4 @@
+<resources>
+  <string name="app_name">ViewModel With DataBinding</string>
+  <string name="click_here">Click here</string>
+</resources>
