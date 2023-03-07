@@ -6,8 +6,20 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import github.noargs.livedatafundamentals.databinding.ActivityMainBinding
+
+// - LiveData: A lifecycle aware observable data holder class
+// in android three app components have lifecycle attached to them
+// i.e. activity, fragment, and services
+// Therefore activity, fragment and services can be used as observers
+// of liveData object
+
+// - LiveData only updates observers in an active lifecycle state
+// - Automatically update the UI when app data changes
+// - No need to write codes to handle lifecycle manually
+// - Can also be used to share Services between components
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +35,11 @@ class MainActivity : AppCompatActivity() {
     viewModelFactory = MainActivityViewModelFactory(125)
     viewModel = ViewModelProvider(this, viewModelFactory)[MainActivityViewModel::class.java]
 
-    binding.resultTextView.text = viewModel.getTotal().toString()
+    viewModel.totalData.observe(this, Observer {
+      binding.resultTextView.text = it.toString()
+    })
+    // replaced by above code `observer from liveData
+    // binding.resultTextView.text = viewModel.getTotal().toString()
 
     binding.insertButton.setOnClickListener {
       binding.apply {
@@ -34,7 +50,9 @@ class MainActivity : AppCompatActivity() {
           ).show()
         } else {
           viewModel.setTotal(inputEditText.text.toString().toInt())
-          resultTextView.text = viewModel.getTotal().toString()
+          // don't need to set `resultTextView` again on click as LiveData automatically update
+          // upon the change in data
+          // resultTextView.text = viewModel.getTotal().toString()
           inputEditText.text.clear()
         }
 
