@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context=".MainActivity">
+  xmlns:tools="http://schemas.android.com/tools">
 
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Hello World!"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+      android:id="@+id/input_edit_text"
+      android:layout_width="312dp"
+      android:layout_height="51dp"
+      android:layout_marginTop="76dp"
+      android:autofillHints="Numbers"
+      android:ems="10"
+      android:hint="@string/enter_a_number_to_add"
+      android:inputType="number"
+      android:textSize="30sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.494"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+      android:id="@+id/insert_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="22dp"
+      android:text="@string/add"
+      android:textSize="36sp"
+      app:layout_constraintStart_toStartOf="@+id/input_edit_text"
+      app:layout_constraintTop_toBottomOf="@+id/input_edit_text" />
+
+    <TextView
+      android:id="@+id/result_text_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="12dp"
+      android:layout_marginTop="22dp"
+      android:textSize="36sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="@+id/insert_button"
+      app:layout_constraintTop_toBottomOf="@+id/insert_button"
+      app:layout_constraintVertical_bias="0.038" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
