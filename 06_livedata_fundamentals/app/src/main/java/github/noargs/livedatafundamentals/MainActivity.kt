@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     viewModel.totalData.observe(this, Observer {
       binding.resultTextView.text = it.toString()
     })
-    // replaced by above code `observer from liveData
+    // -Replaced by above code `observer` from liveData
     // binding.resultTextView.text = viewModel.getTotal().toString()
 
     binding.insertButton.setOnClickListener {
