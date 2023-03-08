@@ -1,0 +1,6 @@
+<resources>
+  <string name="app_name">DataBinding LiveData ViewModel TwoWay</string>
+  <string name="please_enter_a_number_two_add">Please enter a number to add</string>
+  <string name="add">Add</string>
+  <string name="empty_input_warning">Please enter a valid number to add</string>
+</resources>
