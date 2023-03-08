@@ -2,4 +2,6 @@
   <string name="app_name">Navigation Demo</string>
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="empty_edit_text_field_warning">Please insert your name!</string>
+  <string name="submit">Submit</string>
 </resources>
