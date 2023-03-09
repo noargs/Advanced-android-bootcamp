@@ -11,4 +11,6 @@
   <string name="terms_and_conditions">Terms and conditions</string>
   <string name="welcome">Welcome</string>
   <string name="view_terms">View Terms</string>
+  <string name="name_cannot_be_empty">Name cannot be empty</string>
+  <string name="please_enter_your_email">Please, enter your email</string>
 </resources>

@@ -1,11 +1,17 @@
 package github.noargs.navigationexercise
 
+import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import github.noargs.navigationexercise.databinding.FragmentNameBinding
 
 
@@ -22,7 +28,30 @@ class NameFragment : Fragment() {
 
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_name, container, false)
 
+    binding.nextButton.setOnClickListener {
+      if (!TextUtils.isEmpty(binding.nameEditText.text.toString())) {
+        var bundle = bundleOf(
+          "name_input_text" to binding.nameEditText.text.toString()
+        )
+      it.findNavController().navigate(R.id.action_nameFragment_to_emailFragment, bundle)
+      } else {
+        Toast.makeText(
+          activity,
+          getString(R.string.name_cannot_be_empty),
+          Toast.LENGTH_LONG
+        ).show()
+      }
+      hideKeyboard()
+    }
+
     return binding.root
+  }
+
+  private fun hideKeyboard() {
+    if (activity?.currentFocus != null) {
+      val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+      imm.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
+    }
   }
 
 }
