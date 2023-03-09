@@ -8,6 +8,45 @@
     android:layout_height="match_parent"
     tools:context=".TermsFragment">
 
+  <TextView
+    android:id="@+id/terms1_text_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/terms_and_conditions"
+    android:textSize="30sp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintVertical_bias="0.244"/>
+
+    <TextView
+      android:id="@+id/terms2_text_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/terms_and_conditions"
+      android:textSize="30sp"
+      app:layout_constraintTop_toBottomOf="@id/terms1_text_view"
+      app:layout_constraintStart_toStartOf="@id/terms1_text_view"
+      app:layout_constraintEnd_toEndOf="@id/terms1_text_view"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintVertical_bias="0.150"/>
+
+    <TextView
+      android:id="@+id/terms3_text_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/terms_and_conditions"
+      android:textSize="30sp"
+      app:layout_constraintTop_toBottomOf="@id/terms2_text_view"
+      app:layout_constraintStart_toStartOf="@id/terms2_text_view"
+      app:layout_constraintEnd_toEndOf="@id/terms2_text_view"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintVertical_bias="0.150"/>
+
+
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

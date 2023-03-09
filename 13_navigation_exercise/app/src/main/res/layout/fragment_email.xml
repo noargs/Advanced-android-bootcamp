@@ -8,6 +8,35 @@
     android:layout_height="match_parent"
     tools:context=".EmailFragment">
 
+    <EditText
+      android:id="@+id/email_edit_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:paddingStart="10dp"
+      android:paddingEnd="10dp"
+      android:inputType="textEmailAddress"
+      android:textSize="36sp"
+      android:hint="@string/enter_your_email"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintVertical_bias="0.224"
+      android:importantForAutofill="no" />
+
+    <Button
+      android:id="@+id/submit_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="@string/submit"
+      android:textSize="26sp"
+      app:layout_constraintTop_toBottomOf="@id/email_edit_text"
+      app:layout_constraintStart_toStartOf="@id/email_edit_text"
+      app:layout_constraintEnd_toEndOf="@id/email_edit_text"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintVertical_bias="0.300" />
+
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

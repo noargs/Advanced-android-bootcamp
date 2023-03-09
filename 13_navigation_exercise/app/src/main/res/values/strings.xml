@@ -2,4 +2,13 @@
   <string name="app_name">Navigation Exercise</string>
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="sign_up">Sign Up</string>
+  <string name="terms">Terms</string>
+  <string name="enter_your_name">Enter your name</string>
+  <string name="next">Next</string>
+  <string name="enter_your_email">Enter your email</string>
+  <string name="submit">Submit</string>
+  <string name="terms_and_conditions">Terms and conditions</string>
+  <string name="welcome">Welcome</string>
+  <string name="view_terms">View Terms</string>
 </resources>
