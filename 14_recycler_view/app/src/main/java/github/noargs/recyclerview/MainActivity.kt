@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -15,6 +16,20 @@ import androidx.recyclerview.widget.RecyclerView
 // 5. Adapter class has 3 functions which needs to be implemented `onCreateViewHolder`, `onBindViewHolder`, and `getItemCount`
 
 class MainActivity : AppCompatActivity() {
+
+  // in most scenerios we send the List of objects (i.e. Data class list) instead of just the List
+//  val fruitsList = listOf<String>("Apple", "Avocado", "Raspberries", "Lemon", "Pears", "Orange", "Guava")
+
+  val fruitsList = listOf<Fruit>(
+    Fruit("Apple", "Ibn"),
+    Fruit("Avocado", "Jammy"),
+    Fruit("Raspberries", "Jay"),
+    Fruit("Lemon", "Zack"),
+    Fruit("Pears", "Aly"),
+    Fruit("Orange", "Frank")
+
+  )
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
@@ -24,7 +39,19 @@ class MainActivity : AppCompatActivity() {
 
     // there are 3 layout manager to use with RecyclerView
     // Linearlayout manager, GridLayout manager, StaggeredGridLayout manager
-    // we can create our own custom layout manager
+    // we can create our own custom layout manager as well
     recyclerView.layoutManager = LinearLayoutManager(this)
+
+    recyclerView.adapter = MyRecyclerViewAdapter(fruitsList) { selectedItem: Fruit ->
+      listItemClicked(selectedItem)
+    }
+  }
+
+  private fun listItemClicked(fruit: Fruit) {
+    Toast.makeText(
+      this@MainActivity,
+      "Selected Fruit is: ${fruit.name}",
+      Toast.LENGTH_LONG
+    ).show()
   }
 }
