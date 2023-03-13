@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     for (i in 1..1000000) {
       // Log.i("MyTag", "Downloading user $i in ${Thread.currentThread().name}")
 
-      // we cannot touch this (IO) Thread as view was initially created in Main (Background) Thread
+      // we cannot touch this (IO) Thread as view was initially created in Main Thread
       // however Coroutine give us opportunity to switch the thread `withContext()`
 //      userMessage.text = "Downloading user $i, ${Thread.currentThread().name}"
       withContext(Dispatchers.Main) {
