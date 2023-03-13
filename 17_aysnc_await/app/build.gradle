@@ -37,7 +37,7 @@ dependencies {
     // https://github.com/kotlin/kotlinx.coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'       // general coroutines dependency
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'    // coroutines dependency for android related components
-    
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
