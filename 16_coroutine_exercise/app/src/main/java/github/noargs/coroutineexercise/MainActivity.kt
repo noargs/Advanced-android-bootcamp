@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
   private var count = 0
+  private lateinit var userMessage: TextView
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
@@ -32,9 +31,17 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private fun downloadUserData() {
+  private suspend fun downloadUserData() {
     for (i in 1..1000000) {
-      Log.i("MyTag", "Downloading user $i in ${Thread.currentThread().name}")
+      // Log.i("MyTag", "Downloading user $i in ${Thread.currentThread().name}")
+
+      // we cannot touch this (IO) Thread as view was initially created in Main (Background) Thread
+      // however Coroutine give us opportunity to switch the thread `withContext()`
+//      userMessage.text = "Downloading user $i, ${Thread.currentThread().name}"
+      withContext(Dispatchers.Main) {
+        userMessage.text = "Downloading user $i, in ${Thread.currentThread().name}"
+        delay(1000)
+      }
     }
   }
 }
