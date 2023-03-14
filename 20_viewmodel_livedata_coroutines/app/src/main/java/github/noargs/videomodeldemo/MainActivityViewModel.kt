@@ -1,11 +1,11 @@
 package github.noargs.videomodeldemo
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import github.noargs.videomodeldemo.model.User
+import github.noargs.videomodeldemo.model.UserRepository
+import kotlinx.coroutines.*
 
 // In android everytime the ViewModel is cleared from the memory, just before the clearing
 //   ViewModel invokes its `onCleared()` method, which is always there from beginning
@@ -29,10 +29,12 @@ import kotlinx.coroutines.launch
 // We can easily use this scope from an extension function available on the viewmodel-ktx library.
 //   implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
-class MainActivityLiveModel: ViewModel() {
+class MainActivityViewModel: ViewModel() {
 
 //  private val job = Job()
 //  private val scope = CoroutineScope(Dispatchers.IO + job)
+  private var userRepository = UserRepository()
+  var users: MutableLiveData<List<User>> = MutableLiveData()
 
   fun getUserData() {
 
@@ -42,7 +44,12 @@ class MainActivityLiveModel: ViewModel() {
 //
 //    }
     viewModelScope.launch {
+      var result: List<User>? = null
 
+      withContext(Dispatchers.IO){
+        result = userRepository.getUsers() // we will send this `result` List to the views as liveData
+      }
+      users.value = result!!
     }
 
 
