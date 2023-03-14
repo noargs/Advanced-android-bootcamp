@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
 
     mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-    mainActivityViewModel.getUsers()
+    // liveData Builder will automatically emit the data when available
+    // mainActivityViewModel.getUsers()
     mainActivityViewModel.users.observe(this, Observer {foundUsers ->
       foundUsers.forEach { Log.i("MyTag", "name is ${it.name}")}
     })

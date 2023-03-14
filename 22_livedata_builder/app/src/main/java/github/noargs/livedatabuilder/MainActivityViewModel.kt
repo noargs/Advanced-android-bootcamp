@@ -2,6 +2,7 @@ package github.noargs.livedatabuilder
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import github.noargs.livedatabuilder.model.User
 import github.noargs.livedatabuilder.model.UserRepo
@@ -36,8 +37,13 @@ class MainActivityViewModel: ViewModel() {
 //  private val job = Job()
 //  private val scope = CoroutineScope(Dispatchers.IO + job)
   private var userRepo = UserRepo()
-  var users: MutableLiveData<List<User>> = MutableLiveData()
+//  var users: MutableLiveData<List<User>> = MutableLiveData()
 
+  // above MutableLiveData and below viewModelScope has been replaced with this code
+  var users = liveData(Dispatchers.IO) {
+    val results = userRepo.getUsers()
+    emit(results)
+  }
   fun getUsers() {
 
     // Our scope `scope.launch{ }` will be replaced by `viewModelScope.launch{ }` from ktx library
@@ -45,17 +51,19 @@ class MainActivityViewModel: ViewModel() {
 //    scope.launch {
 //
 //    }
-    viewModelScope.launch {
-      var result: List<User>? = null
-      withContext(Dispatchers.IO) {
-        result = userRepo.getUsers() // we will send this `result` List to the views as liveData
-      }
-      users.value = result!!
-    }
+//    viewModelScope.launch {
+//      var result: List<User>? = null
+//      withContext(Dispatchers.IO) {
+//        result = userRepo.getUsers() // we will send this `result` List to the views as liveData
+//      }
+//      users.value = result!!
+//    }
   }
 
   //  override fun onCleared() {
 //    super.onCleared()
 //    job.cancel()
 //  }
-}
+
+
+} // end of
