@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import github.noargs.roomdemo.databinding.ActivityMainBinding
 import github.noargs.roomdemo.db.SubscriberDatabase
 import github.noargs.roomdemo.db.SubscriberRepo
@@ -28,8 +29,13 @@ class MainActivity : AppCompatActivity() {
     binding.myViewModel = subscriberViewModel
     binding.lifecycleOwner = this // as we are using liveData with dataBinding hence we need to provide lifecycleOwner
 
-    displaySubscribersList()
+    initRecyclerView()
 
+  }
+
+  private fun initRecyclerView() {
+    binding.subscriberRecyclerView.layoutManager = LinearLayoutManager(this)
+    displaySubscribersList()
   }
 
   private fun displaySubscribersList() {
@@ -37,6 +43,7 @@ class MainActivity : AppCompatActivity() {
     // SubscriberViewModel (->) SubscribersRepo (->) SubscriberDAO.getAllSubscribers(): LiveData<List<Subscriber>>
     subscriberViewModel.subscribers.observe(this, Observer {
       Log.i("MyTag", it.toString())
+      binding.subscriberRecyclerView.adapter = MyRecyclerViewAdapter(it)
     })
   }
 
